@@ -13,5 +13,4 @@
 *.sublime-workspace
 
 .gradle
-build.gradle
 build/*
