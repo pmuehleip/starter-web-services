@@ -12,7 +12,7 @@ public class ExampleController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/starter-web-services/example")
+    @RequestMapping("/example")
     public Example example(@RequestParam(value="name", defaultValue="World") String name) {
         return new Example(counter.incrementAndGet(), String.format(template, name));
     }

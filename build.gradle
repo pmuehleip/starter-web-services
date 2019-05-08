@@ -11,12 +11,14 @@ plugins {
     id 'java'
     id 'war'
     id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 }
 
-apply plugin: 'io.spring.dependency-management'
-
-group 'com.mycompanyname'
-version '1.0.0'
+bootJar {
+    baseName = 'starter-web-service'
+    group 'com.mycompanyname'
+    version '1.0.0'
+}
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -26,7 +28,6 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok:1.18.6'
