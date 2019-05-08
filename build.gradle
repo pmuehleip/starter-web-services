@@ -18,7 +18,8 @@ apply plugin: 'io.spring.dependency-management'
 group 'com.mycompanyname'
 version '1.0.0'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 repositories {
     mavenCentral()
@@ -28,14 +29,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     compileOnly 'org.projectlombok:lombok:1.18.6'
     annotationProcessor 'org.projectlombok:lombok:1.18.6'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-    //compile 'org.apache.logging.log4j:log4j-api:2.11.2'
 }
 
 configurations {
-    //compile.exclude module: 'spring-boot-starter-logging'
+    // Example of how to exclude a library.
     //compile.exclude module: 'spring-boot-starter-logging'
 }

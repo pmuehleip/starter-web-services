@@ -1,4 +1,4 @@
-package Example;
+package app.example;
 
 public class ExampleRepository {
 }
