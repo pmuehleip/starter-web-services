@@ -1,19 +1,21 @@
 package app.example;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class ExampleController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+    @Autowired
+    private ExampleService exampleService;
 
-    @RequestMapping("/example")
-    public Example example(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Example(counter.incrementAndGet(), String.format(template, name));
+    @GetMapping(path="/example/{content}")
+    public Example example(@PathVariable String content) {
+        Example example = new Example();
+        example.setContent(content);
+        exampleService.save(example);
+        return example;
     }
 }
