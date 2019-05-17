@@ -1,0 +1,18 @@
+## This file serves as an example of how the application.properties should be used within the resources directory.
+## The brackets {} imply credentials that should be entered.
+
+## SERVER
+server.servlet.context-path=/starter-web-services
+#server.port=3000
+
+
+## LOGGING
+logging.level.root=WARN
+logging.level.org.springframework.web=DEBUG
+#logging.level.org.apache=DEBUG
+
+
+## DATABASE
+spring.datasource.url={Enter url here}
+spring.datasource.username={Enter username here}
+spring.datasource.password={Enter password here}
