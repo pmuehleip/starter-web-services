@@ -15,4 +15,5 @@
 .gradle
 build/*
 
-*/resources/application.properties  # We don't want to push configuration secrets.
+# We don't want to push configuration secrets.
+/src/main/resources/application.properties
