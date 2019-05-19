@@ -16,4 +16,4 @@
 build/*
 
 # We don't want to push configuration secrets.
-/src/main/resources/application.properties
+/src/main/resources/config/application.properties

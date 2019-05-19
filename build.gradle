@@ -10,7 +10,7 @@ buildscript {
 plugins {
     id 'java'
     id 'war'
-    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
     id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 }
 
@@ -19,6 +19,8 @@ plugins {
     group 'com.mycompanyname'
     version '1.0.0'
 //}
+
+ext['junit-jupiter.version'] = '5.4.0'
 
 sourceCompatibility = 11
 targetCompatibility = 11
@@ -33,15 +35,31 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
-    compile 'mysql:mysql-connector-java' // Use MySQL Connector-J
+    compile 'mysql:mysql-connector-java' // Use MySQL Connector-Java
+    compile group: 'org.apache.maven.plugins', name: 'maven-surefire-plugin', version: '3.0.0-M3'
     
     // For Tests
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('com.jayway.jsonpath:json-path')
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'com.h2database:h2:1.4.199'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.4.2'
+    testRuntime("org.junit.jupiter:junit-jupiter-engine")
+
+}
+
+
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed" // "standardOut", "standardError"
+    }
 }
 
 configurations {
     // Example of how to exclude a library.
+    compile.exclude module: 'junit'
+    compile.exclude module: 'logback-classic'
+
     //compile.exclude module: 'spring-boot-starter-logging'
 }

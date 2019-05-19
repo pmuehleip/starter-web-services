@@ -3,6 +3,7 @@
 
 ## SERVER
 server.servlet.context-path=/starter-web-services
+server.http2.enabled=true
 #server.port=3000
 
 

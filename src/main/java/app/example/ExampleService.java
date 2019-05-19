@@ -12,4 +12,12 @@ public class ExampleService {
     public Example save(Example example) {
         return exampleRepository.save(example);
     }
+
+    public void deleteAll() {
+        exampleRepository.deleteAll();
+    }
+
+    public Iterable<Example> findAll() {
+        return exampleRepository.findAll();
+    }
 }

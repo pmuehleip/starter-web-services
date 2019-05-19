@@ -1,38 +1,44 @@
 package app.example;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.google.common.collect.Lists;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.ActiveProfiles;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import java.util.List;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
-@AutoConfigureMockMvc
+@ActiveProfiles({"test"})
 public class ExampleControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    private ExampleController controller;
 
-    @Test
-    public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
+    @Autowired
+    private ExampleService exampleService;
 
-        this.mockMvc.perform(get("/example")).andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, World!"));
+    @BeforeEach
+    public void cleanup() {
+        System.out.println("Before Each initEach() method called");
+        exampleService.deleteAll();
     }
 
     @Test
-    public void paramGreetingShouldReturnTailoredMessage() throws Exception {
+    public void testGet() {
+        Example ex = controller.example("people");
 
-        this.mockMvc.perform(get("/example").param("name", "Spring Community"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
+        assertEquals(1, Lists.newArrayList(exampleService.findAll()).size());
+        assertEquals("people", ex.getContent());
+    }
+
+    @Test
+    public void testGet2() {
+        Example ex = controller.example("yo");
+        assertEquals(1, Lists.newArrayList(exampleService.findAll()).size());
+        assertEquals("yo", ex.getContent());
     }
 }
