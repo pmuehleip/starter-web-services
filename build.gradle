@@ -14,11 +14,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 }
 
-//bootJar {
-  //  baseName = 'starter-web-services'
-    group 'com.mycompanyname'
-    version '1.0.0'
-//}
+group 'com.mycompanyname'
+version '1.0.0'
 
 ext['junit-jupiter.version'] = '5.4.0'
 
