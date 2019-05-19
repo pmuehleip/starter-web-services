@@ -14,6 +14,7 @@
 
 .gradle
 build/*
+out/*
 
 # We don't want to push configuration secrets.
 /src/main/resources/config/application.properties

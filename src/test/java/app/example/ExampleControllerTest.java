@@ -23,7 +23,6 @@ public class ExampleControllerTest {
 
     @BeforeEach
     public void cleanup() {
-        System.out.println("Before Each initEach() method called");
         exampleService.deleteAll();
     }
 

@@ -9,8 +9,7 @@ server.http2.enabled=true
 
 ## LOGGING
 logging.level.root=WARN
-logging.level.org.springframework.web=DEBUG
-#logging.level.org.apache=DEBUG
+logging.level.org.springframework.web=WARN
 
 
 ## DATABASE
