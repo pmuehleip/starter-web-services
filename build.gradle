@@ -54,9 +54,6 @@ test {
 }
 
 configurations {
-    // Example of how to exclude a library.
     compile.exclude module: 'junit'
     compile.exclude module: 'logback-classic'
-
-    //compile.exclude module: 'spring-boot-starter-logging'
 }
